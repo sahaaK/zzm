@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyloo Ecosystem Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .glow {
+            box-shadow: 0 0 15px currentColor;
+        }
+        
+        .node {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .node:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .connector {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s linear forwards;
+        }
+        
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent mb-4">
+                Zyloo Site Map
+            </h1>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+               Interactive visualization of all Zyloo systems and their relationships
+            </p>
+        </div>
+        
+        <div class="relative w-full h-auto min-h-[600px] md:min-h-[800px]">
+            <!-- SVG Container -->
+            <svg id="map" class="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+                <!-- Connectors -->
+                <path class="connector stroke-[4] stroke-indigo-500/30" d="M600,150 C600,250 600,250 600,350" fill="none"></path>
+                <path class="connector stroke-[4] stroke-pink-500/30" d="M600,350 C500,400 500,500 400,550" fill="none"></path>
+                <path class="connector stroke-[4] stroke-blue-500/30" d="M600,350 C700,400 700,500 800,550" fill="none"></path>
+                <path class="connector stroke-[4] stroke-green-500/30" d="M600,350 C600,450 600,450 600,550" fill="none"></path>
+                <path class="connector stroke-[4] stroke-yellow-500/30" d="M600,350 C400,400 400,500 400,650" fill="none"></path>
+                
+                <!-- Main Node -->
+                <g class="node cursor-pointer" onclick="window.open('https://zylooo.web.app', '_blank')">
+                    <circle cx="600" cy="150" r="80" fill="url(#mainGradient)" class="glow"></circle>
+                    <text x="600" y="150" text-anchor="middle" dominant-baseline="middle" class="text-2xl font-bold fill-white">Zylooo</text>
+                    <text x="600" y="190" text-anchor="middle" dominant-baseline="middle" class="text-sm fill-white/80">Company Website</text>
+                </g>
+                
+                <!-- Hub Node -->
+                <g class="node">
+                    <circle cx="600" cy="350" r="60" fill="#4f46e5" class="glow"></circle>
+                    <text x="600" y="350" text-anchor="middle" dominant-baseline="middle" class="text-xl font-bold fill-white">Hub</text>
+                </g>
+                
+                <!-- POS Node -->
+                <g class="node cursor-pointer" onclick="window.open('https://zyloopos.web.app', '_blank')">
+                    <circle cx="400" cy="550" r="70" fill="url(#posGradient)" class="glow"></circle>
+                    <text x="400" y="540" text-anchor="middle" dominant-baseline="middle" class="text-xl font-bold fill-white">ZylooPOS</text>
+                    <text x="400" y="575" text-anchor="middle" dominant-baseline="middle" class="text-sm fill-white/80">Point of Sale System</text>
+                </g>
+                
+                <!-- Zyman Node -->
+                <g class="node cursor-pointer">
+                    <circle cx="800" cy="550" r="70" fill="url(#zymanGradient)" class="glow"></circle>
+                    <text x="800" y="540" text-anchor="middle" dominant-baseline="middle" class="text-xl font-bold fill-white">Zyman</text>
+                    <text x="800" y="575" text-anchor="middle" dominant-baseline="middle" class="text-sm fill-white/80">Management Dashboard</text>
+                </g>
+                
+                <!-- Zybuz Node -->
+                <g class="node cursor-pointer">
+                    <circle cx="600" cy="550" r="70" fill="url(#zybuzGradient)" class="glow"></circle>
+                    <text x="600" y="540" text-anchor="middle" dominant-baseline="middle" class="text-xl font-bold fill-white">Zybuz</text>
+                    <text x="600" y="575" text-anchor="middle" dominant-baseline="middle" class="text-sm fill-white/80">Business Requests</text>
+                </g>
+                
+                <!-- Zymo Node -->
+                <g class="node cursor-pointer">
+                    <circle cx="400" cy="650" r="70" fill="url(#zymoGradient)" class="glow"></circle>
+                    <text x="400" y="640" text-anchor="middle" dominant-baseline="middle" class="text-xl font-bold fill-white">Zymo</text>
+                    <text x="400" y="675" text-anchor="middle" dominant-baseline="middle" class="text-sm fill-white/80">Business Management</text>
+                </g>
+                
+                <!-- Gradients -->
+                <defs>
+                    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#8b5cf6" />
+                        <stop offset="100%" stop-color="#6366f1" />
+                    </linearGradient>
+                    
+                    <linearGradient id="posGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f59e0b" />
+                        <stop offset="100%" stop-color="#ef4444" />
+                    </linearGradient>
+                    
+                    <linearGradient id="zymanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#10b981" />
+                    </linearGradient>
+                    
+                    <linearGradient id="zybuzGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ec4899" />
+                        <stop offset="100%" stop-color="#8b5cf6" />
+                    </linearGradient>
+                    
+                    <linearGradient id="zymoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#10b981" />
+                        <stop offset="100%" stop-color="#3b82f6" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        
+        <!-- Legend -->
+        <div class="mt-12 bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 max-w-4xl mx-auto border border-gray-700">
+            <h2 class="text-2xl font-bold mb-6 text-center text-blue-300">System Legend</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-purple-500">
+                    <h3 class="font-bold text-lg mb-2">Zylooo</h3>
+                    <p class="text-gray-300 text-sm">Main company website serving as the entry point to the ecosystem.</p>
+                    <a href="https://zylooo.web.app" target="_blank" class="text-purple-400 text-sm mt-2 inline-block hover:underline">zylooo.web.app</a>
+                </div>
+                
+                <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-lg mb-2">ZylooPOS</h3>
+                    <p class="text-gray-300 text-sm">Point of Sale system for processing transactions and managing sales.</p>
+                    <a href="https://zyloopos.web.app" target="_blank" class="text-indigo-400 text-sm mt-2 inline-block hover:underline">zyloopos.web.app</a>
+                </div>
+                
+                <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <h3 class="font-bold text-lg mb-2">Zyman</h3>
+                    <p class="text-gray-300 text-sm">Management dashboard for viewing store data and system overview.</p>
+                    <p class="text-blue-400 text-sm mt-2">(Internal System)</p>
+                </div>
+                
+                <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-pink-500">
+                    <h3 class="font-bold text-lg mb-2">Zybuz</h3>
+                    <p class="text-gray-300 text-sm">Business request system for new clients coming from the main website.</p>
+                    <p class="text-pink-400 text-sm mt-2">(Integrated with Zylooo)</p>
+                </div>
+                
+                <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-lg mb-2">Zymo</h3>
+                    <p class="text-gray-300 text-sm">Business portal for managing stores, products, and viewing reports.</p>
+                    <p class="text-green-400 text-sm mt-2">(Client-facing System)</p>
+                </div>
+
+                 <div class="bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-lg mb-2">Zyloo site map</h3>
+                    <p class="text-gray-300 text-sm">Visual representation of the Zyloo ecosystem and its components.</p>
+                    <p class="text-green-400 text-sm mt-2">(Client-facing System)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-16 text-center text-gray-500 text-sm">
+        <p>Zyloo Site Map © 2025</p>
+    </footer>
+    
+    <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const nodes = document.querySelectorAll('.node');
+            
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', function() {
+                    const circle = this.querySelector('circle');
+                    circle.classList.add('pulse');
+                });
+                
+                node.addEventListener('mouseleave', function() {
+                    const circle = this.querySelector('circle');
+                    circle.classList.remove('pulse');
+                });
+            });
+            
+            // Animate connectors
+            setTimeout(() => {
+                const connectors = document.querySelectorAll('.connector');
+                connectors.forEach(connector => {
+                    connector.style.strokeDashoffset = '0';
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
